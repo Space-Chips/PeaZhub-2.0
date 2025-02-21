@@ -16,37 +16,47 @@
             <button id="grind-mode-toggle">Grind Mode: Off</button>
         </header>
         <main>
-            <section id="tasks">
-                <h2>Tasks</h2>
-                <input type="text" id="task-input" placeholder="Enter task...">
-                <select id="priority">
-                    <option value="low">Low</option>
-                    <option value="high">High</option>
+            <section class="card" id="timer">
+                <h2>Focus Timer</h2>
+                <select id="timer-technique">
+                    <option value="classic">Classic Pomodoro (25m/5m)</option>
+                    <option value="eisenhower">Eisenhower Pomodoro (50m/10m)</option>
+                    <option value="5217">52/17 Rule (52m/17m)</option>
+                    <option value="90min">90-Minute Cycle (90m/20m)</option>
+                    <option value="timebox">Timeboxing (60m/15m)</option>
+                    <option value="3hour">3-Hour Block (180m/30m)</option>
                 </select>
-                <button onclick="addTask()">Add</button>
-                <ul id="task-list"></ul>
-            </section>
-            <section id="timer">
-                <h2>Time Tracker</h2>
-                <input type="text" id="timer-category" placeholder="Category (e.g., Work)">
-                <div id="timer-display">00:00:00</div>
+                <div id="timer-display">25:00</div>
                 <button onclick="startTimer()">Start</button>
                 <button onclick="stopTimer()">Stop</button>
             </section>
-            <section id="habits">
-                <h2>Habits</h2>
-                <input type="text" id="habit-input" placeholder="Enter habit...">
-                <button onclick="addHabit()">Add</button>
-                <ul id="habit-list"></ul>
+            <section class="card" id="streaks">
+                <h2>Streak Tracker</h2>
+                <div class="streak-info">
+                    <p>Current Streak: <span id="current-streak">0 days</span></p>
+                    <p>Best Streak: <span id="best-streak">0 days</span></p>
+                </div>
+                <p class="progress">Progress to Legendary: <span id="legendary-progress">0%</span></p>
+                <div class="progress-bar">
+                    <div id="progress-fill" class="progress-fill"></div>
+                </div>
             </section>
-            <section id="stats">
+            <section class="card" id="stats">
                 <h2>Grind Analytics</h2>
                 <div class="stats-grid">
-                    <canvas id="task-chart"></canvas>
-                    <canvas id="time-chart"></canvas>
-                    <canvas id="habit-chart"></canvas>
+                    <div class="chart-card">
+                        <canvas id="session-chart"></canvas>
+                        <p class="chart-label">Total Sessions</p>
+                    </div>
+                    <div class="chart-card">
+                        <canvas id="time-chart"></canvas>
+                        <p class="chart-label">Time Distribution</p>
+                    </div>
+                    <div class="chart-card">
+                        <canvas id="streak-chart"></canvas>
+                        <p class="chart-label">Streak Trends</p>
+                    </div>
                     <p id="grind-score">Grind Score: 0%</p>
-                    <p id="weekly-report"></p>
                 </div>
             </section>
         </main>

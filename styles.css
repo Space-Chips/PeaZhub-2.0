@@ -1,3 +1,4 @@
+/* Existing CSS (unchanged) */
 body {
     background: linear-gradient(135deg, #0d0d2b, #1a1a3d);
     font-family: 'Orbitron', sans-serif;
@@ -11,22 +12,42 @@ body {
     margin: 0 auto;
     padding: 20px;
     background: rgba(0, 0, 0, 0.7);
-    border-radius: 10px;
-    box-shadow: 0 0 20px rgba(0, 204, 255, 0.5);
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(102, 0, 204, 0.5);
+}
+
+header {
+    text-align: center;
+    margin-bottom: 20px;
 }
 
 h1 {
-    color: #00ccff;
-    text-shadow: 0 0 10px #00ccff;
+    color: #ff66cc;
+    text-shadow: 0 0 10px #ff66cc;
 }
 
 h2 {
-    color: #ff007f;
+    color: #00ffcc;
+    text-shadow: 0 0 5px #00ffcc;
 }
 
-input, select, button {
+.card {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 20px;
+    box-shadow: 0 0 10px rgba(0, 204, 255, 0.3);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 15px rgba(0, 204, 255, 0.5);
+}
+
+select, button {
     background: rgba(255, 255, 255, 0.1);
-    border: 1px solid #00ccff;
+    border: 1px solid #00ffcc;
     color: #e0e0ff;
     padding: 8px;
     margin: 5px 0;
@@ -35,15 +56,44 @@ input, select, button {
 }
 
 button:hover {
-    background: #00ccff;
+    background: #00ffcc;
     color: #000;
-    box-shadow: 0 0 15px #00ccff;
+    box-shadow: 0 0 15px #00ffcc;
+}
+
+#timer-display {
+    font-size: 2em;
+    color: #00ffcc;
+    text-align: center;
+    margin: 15px 0;
+    text-shadow: 0 0 5px #00ffcc;
 }
 
 .quote {
     color: #ff66cc;
     font-style: italic;
     text-shadow: 0 0 5px #ff66cc;
+    margin: 10px 0;
+}
+
+.streak-info, .progress {
+    color: #e0e0ff;
+    margin: 10px 0;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #ff66cc, #00ffcc);
+    width: 0%;
+    transition: width 0.3s;
 }
 
 .stats-grid {
@@ -52,8 +102,12 @@ button:hover {
     gap: 20px;
 }
 
+/* Chart Styling */
 canvas {
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(255, 255, 255, 0.05);
     border-radius: 5px;
     padding: 10px;
+    box-shadow: 0 0 10px rgba(0, 204, 255, 0.2);
+    width: 100% !important;
+    height: 200px !important;
 }
