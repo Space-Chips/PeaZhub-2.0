@@ -3,25 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PeaZhub 2.0 - Grind Terminal</title>
+    <title>PeaZhub 3.0 - Grind Matrix</title>
     <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-    <div class="crt-screen">
+    <div class="container">
         <header>
-            <h1>PeaZhub 2.0</h1>
-            <p class="quote" id="underwood-quote">"Power is the grind you endure."</p>
+            <h1>PeaZhub 3.0</h1>
+            <p class="quote" id="underwood-quote">"The grind is the only currency that matters."</p>
+            <button id="grind-mode-toggle">Grind Mode: Off</button>
         </header>
         <main>
             <section id="tasks">
                 <h2>Tasks</h2>
                 <input type="text" id="task-input" placeholder="Enter task...">
+                <select id="priority">
+                    <option value="low">Low</option>
+                    <option value="high">High</option>
+                </select>
                 <button onclick="addTask()">Add</button>
                 <ul id="task-list"></ul>
             </section>
             <section id="timer">
-                <h2>Grind Timer</h2>
+                <h2>Time Tracker</h2>
+                <input type="text" id="timer-category" placeholder="Category (e.g., Work)">
                 <div id="timer-display">00:00:00</div>
                 <button onclick="startTimer()">Start</button>
                 <button onclick="stopTimer()">Stop</button>
@@ -33,9 +40,14 @@
                 <ul id="habit-list"></ul>
             </section>
             <section id="stats">
-                <h2>Grind Stats</h2>
-                <canvas id="grind-chart"></canvas>
-                <p id="grind-score">Grind Score: 0%</p>
+                <h2>Grind Analytics</h2>
+                <div class="stats-grid">
+                    <canvas id="task-chart"></canvas>
+                    <canvas id="time-chart"></canvas>
+                    <canvas id="habit-chart"></canvas>
+                    <p id="grind-score">Grind Score: 0%</p>
+                    <p id="weekly-report"></p>
+                </div>
             </section>
         </main>
     </div>
