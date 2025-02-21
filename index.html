@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PeaZhub 2.0 - Grind Terminal</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="crt-screen">
+        <header>
+            <h1>PeaZhub 2.0</h1>
+            <p class="quote" id="underwood-quote">"Power is the grind you endure."</p>
+        </header>
+        <main>
+            <section id="tasks">
+                <h2>Tasks</h2>
+                <input type="text" id="task-input" placeholder="Enter task...">
+                <button onclick="addTask()">Add</button>
+                <ul id="task-list"></ul>
+            </section>
+            <section id="timer">
+                <h2>Grind Timer</h2>
+                <div id="timer-display">00:00:00</div>
+                <button onclick="startTimer()">Start</button>
+                <button onclick="stopTimer()">Stop</button>
+            </section>
+            <section id="habits">
+                <h2>Habits</h2>
+                <input type="text" id="habit-input" placeholder="Enter habit...">
+                <button onclick="addHabit()">Add</button>
+                <ul id="habit-list"></ul>
+            </section>
+            <section id="stats">
+                <h2>Grind Stats</h2>
+                <canvas id="grind-chart"></canvas>
+                <p id="grind-score">Grind Score: 0%</p>
+            </section>
+        </main>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
