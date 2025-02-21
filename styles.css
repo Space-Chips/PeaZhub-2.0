@@ -1,10 +1,10 @@
-/* Existing CSS (unchanged) */
 body {
     background: linear-gradient(135deg, #0d0d2b, #1a1a3d);
     font-family: 'Orbitron', sans-serif;
     color: #e0e0ff;
     margin: 0;
     padding: 20px;
+    overflow-x: hidden;
 }
 
 .container {
@@ -14,29 +14,59 @@ body {
     background: rgba(0, 0, 0, 0.7);
     border-radius: 15px;
     box-shadow: 0 0 20px rgba(102, 0, 204, 0.5);
+    position: relative;
 }
 
 header {
     text-align: center;
     margin-bottom: 20px;
+    position: relative;
 }
+
+.top-left-panel {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0 0 10px rgba(0, 204, 255, 0.3);
+    border: 1px solid #00ffcc;
+}
+
+.top-left-panel p {
+    margin: 5px 0;
+    font-size: 14px;
+}
+
+.icon {
+    margin-right: 5px;
+}
+
+.orange { color: #ff8000; text-shadow: 0 0 5px #ff8000; }
+.green { color: #00ffcc; text-shadow: 0 0 5px #00ffcc; }
+.blue { color: #00ccff; text-shadow: 0 0 5px #00ccff; }
+.purple { color: #ff66cc; text-shadow: 0 0 5px #ff66cc; }
 
 h1 {
     color: #ff66cc;
     text-shadow: 0 0 10px #ff66cc;
+    margin: 0;
 }
 
 h2 {
     color: #00ffcc;
     text-shadow: 0 0 5px #00ffcc;
+    margin: 0 0 10px;
 }
 
 .card {
     background: rgba(255, 255, 255, 0.05);
-    border-radius: 10px;
+    border-radius: 15px;
     padding: 15px;
     margin-bottom: 20px;
     box-shadow: 0 0 10px rgba(0, 204, 255, 0.3);
+    border: 1px solid #ff66cc;
     transition: transform 0.3s, box-shadow 0.3s;
 }
 
@@ -45,7 +75,7 @@ h2 {
     box-shadow: 0 0 15px rgba(0, 204, 255, 0.5);
 }
 
-select, button {
+.glowing-input, .glowing-button, .glowing-slider {
     background: rgba(255, 255, 255, 0.1);
     border: 1px solid #00ffcc;
     color: #e0e0ff;
@@ -53,21 +83,16 @@ select, button {
     margin: 5px 0;
     border-radius: 5px;
     transition: all 0.3s;
+    box-shadow: 0 0 5px #00ffcc;
 }
 
-button:hover {
-    background: #00ffcc;
-    color: #000;
+.glowing-input:focus, .glowing-button:hover, .glowing-slider:hover {
     box-shadow: 0 0 15px #00ffcc;
 }
 
-#timer-display {
-    font-size: 2em;
-    color: #00ffcc;
-    text-align: center;
-    margin: 15px 0;
-    text-shadow: 0 0 5px #00ffcc;
-}
+.glowing-button.green { background: rgba(0, 255, 204, 0.1); border-color: #00ffcc; color: #00ffcc; }
+.glowing-button.purple { background: rgba(255, 102, 204, 0.1); border-color: #ff66cc; color: #ff66cc; }
+.glowing-button.play-pause { background: rgba(102, 0, 204, 0.1); border-color: #6600ff; color: #6600ff; }
 
 .quote {
     color: #ff66cc;
@@ -76,8 +101,80 @@ button:hover {
     margin: 10px 0;
 }
 
-.streak-info, .progress {
+.timer-card {
+    text-align: center;
+}
+
+.timer-circle {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    margin: 20px auto;
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 50%;
+    border: 2px solid #00ffcc;
+    box-shadow: 0 0 20px #00ffcc;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.pulsing-dots {
+    position: absolute;
+    top: 10px;
+    color: #00ffcc;
+    animation: pulse 1.5s infinite;
+}
+
+#timer-display {
+    font-size: 2em;
     color: #e0e0ff;
+    text-shadow: 0 0 5px #00ffcc;
+}
+
+.timer-label {
+    color: #00ffcc;
+    text-shadow: 0 0 5px #00ffcc;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+.timer-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.glowing-slider {
+    width: 100px;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    outline: none;
+}
+
+.glowing-slider::-webkit-slider-thumb {
+    width: 15px;
+    height: 15px;
+    background: #00ffcc;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 0 5px #00ffcc;
+}
+
+.challenge-card, #today-progress {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    padding: 15px;
+    margin: 10px 0;
+    box-shadow: 0 0 10px rgba(255, 102, 204, 0.3);
+    border: 1px solid #ff66cc;
+}
+
+.progress-section, .progress-metrics, .total-progress {
     margin: 10px 0;
 }
 
@@ -87,13 +184,74 @@ button:hover {
     background: rgba(255, 255, 255, 0.1);
     border-radius: 5px;
     overflow: hidden;
+    margin: 5px 0;
 }
 
 .progress-fill {
     height: 100%;
-    background: linear-gradient(90deg, #ff66cc, #00ffcc);
-    width: 0%;
+    background: #ff66cc;
     transition: width 0.3s;
+}
+
+.progress-value {
+    color: #e0e0ff;
+    font-size: 14px;
+}
+
+#tasks ul {
+    list-style: none;
+    padding: 0;
+}
+
+#tasks li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 5px;
+    margin: 5px 0;
+    border: 1px solid #ff66cc;
+    box-shadow: 0 0 5px rgba(255, 102, 204, 0.3);
+}
+
+#tasks li input[type="checkbox"] {
+    margin-right: 10px;
+    accent-color: #00ffcc;
+}
+
+.star-rating {
+    display: flex;
+    gap: 5px;
+}
+
+.star {
+    color: #ff8000;
+    font-size: 16px;
+}
+
+.delete-task {
+    color: #ff66cc;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.settings-grid {
+    display: grid;
+    gap: 10px;
+    grid-template-columns: 1fr 2fr;
+    align-items: center;
+}
+
+label {
+    color: #e0e0ff;
+}
+
+.add-task {
+    color: #00ffcc;
+    cursor: pointer;
+    margin-left: 10px;
+    text-shadow: 0 0 5px #00ffcc;
 }
 
 .stats-grid {
@@ -102,7 +260,6 @@ button:hover {
     gap: 20px;
 }
 
-/* Chart Styling */
 canvas {
     background: rgba(255, 255, 255, 0.05);
     border-radius: 5px;
@@ -110,4 +267,26 @@ canvas {
     box-shadow: 0 0 10px rgba(0, 204, 255, 0.2);
     width: 100% !important;
     height: 200px !important;
+}
+
+.top-right-settings, .bottom-left-audio {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: #00ccff;
+    font-size: 20px;
+    cursor: pointer;
+    text-shadow: 0 0 5px #00ccff;
+}
+
+.bottom-left-audio {
+    bottom: 10px;
+    left: 10px;
+    color: #ff66cc;
+}
+
+@keyframes pulse {
+    0% { opacity: 0.5; }
+    50% { opacity: 1; }
+    100% { opacity: 0.5; }
 }

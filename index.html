@@ -11,14 +11,26 @@
 <body>
     <div class="container">
         <header>
+            <div class="top-left-panel">
+                <p><span class="icon">🔥</span> Day Streak: <span class="orange">20 days</span></p>
+                <p><span class="icon">●</span> Sessions: <span class="green">2</span></p>
+                <p><span class="icon">⏱️</span> Focused: <span class="blue">2m</span></p>
+            </div>
             <h1>PeaZhub 3.0</h1>
             <p class="quote" id="underwood-quote">"The grind is the only currency that matters."</p>
-            <button id="grind-mode-toggle">Grind Mode: Off</button>
+            <div class="top-right-settings">
+                <span class="settings-icon">⚙</span>
+            </div>
         </header>
         <main>
-            <section class="card" id="timer">
+            <section class="card timer-card" id="timer">
                 <h2>Focus Timer</h2>
-                <select id="timer-technique">
+                <div class="timer-circle">
+                    <div class="pulsing-dots">● ● ●</div>
+                    <div id="timer-display">25:00</div>
+                    <p class="timer-label">FOCUS SESSION</p>
+                </div>
+                <select id="timer-technique" class="glowing-input">
                     <option value="classic">Classic Pomodoro (25m/5m)</option>
                     <option value="eisenhower">Eisenhower Pomodoro (50m/10m)</option>
                     <option value="5217">52/17 Rule (52m/17m)</option>
@@ -26,40 +38,97 @@
                     <option value="timebox">Timeboxing (60m/15m)</option>
                     <option value="3hour">3-Hour Block (180m/30m)</option>
                 </select>
-                <div id="timer-display">25:00</div>
-                <button onclick="startTimer()">Start</button>
-                <button onclick="stopTimer()">Stop</button>
-            </section>
-            <section class="card" id="streaks">
-                <h2>Streak Tracker</h2>
-                <div class="streak-info">
-                    <p>Current Streak: <span id="current-streak">0 days</span></p>
-                    <p>Best Streak: <span id="best-streak">0 days</span></p>
+                <div class="timer-controls">
+                    <button onclick="startTimer()" class="glowing-button green">▶ Start</button>
+                    <button onclick="stopTimer()" class="glowing-button purple">⚙ Settings</button>
+                    <select class="glowing-input" id="ambient">
+                        <option value="none">Ambient</option>
+                        <option value="calm">Calm</option>
+                    </select>
+                    <button class="glowing-button" id="bell">Bell</button>
+                    <button class="glowing-button play-pause">⏸️</button>
+                    <input type="range" class="glowing-slider" min="0" max="100" value="50">
                 </div>
-                <p class="progress">Progress to Legendary: <span id="legendary-progress">0%</span></p>
-                <div class="progress-bar">
-                    <div id="progress-fill" class="progress-fill"></div>
+            </section>
+            <section class="card" id="challenge">
+                <h2>Better Together</h2>
+                <p>Challenge Your Friends & Track Progress</p>
+                <p>Create study groups, set collective goals, and motivate each other to reach new heights. Track progress together and celebrate achievements as a team.</p>
+                <div class="challenge-card">
+                    <h3>Academic Comeback Challenge <span class="icon">🏆</span></h3>
+                    <p>Target: 100 hours</p>
+                    <p>Start: Feb 3</p>
+                    <p>End: Feb 14</p>
+                    <div class="progress-section">
+                        <p>You: <span class="progress-value">39.3% (39h 19m)</span></p>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 39.3%;"></div>
+                        </div>
+                        <p>Bro: <span class="progress-value">39.3% (3h 30m)</span></p>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 39.3%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="card" id="today-progress">
+                <h2>Today <span class="icon">⏱️</span></h2>
+                <div class="progress-metrics">
+                    <p><span class="icon">●</span> Sessions: <span class="green">6</span></p>
+                    <p><span class="icon">⏱️</span> Duration: <span class="blue">1h28m</span></p>
+                </div>
+                <div class="total-progress">
+                    <p><span class="icon">～</span> Total Progress</p>
+                    <p>Sessions: <span class="purple">417</span></p>
+                    <p>Hours: <span class="purple">186h6m</span></p>
+                    <p><span class="icon">●</span> Target Hours: <span class="green">500hr</span></p>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 37%;"></div>
+                    </div>
+                    <p class="progress-value">37% complete (186h6m / 500hr)</p>
+                </div>
+            </section>
+            <section class="card" id="tasks">
+                <h2>Task List <span class="add-task">+</span></h2>
+                <ul id="task-list"></ul>
+            </section>
+            <section class="card" id="timer-settings">
+                <h2>Timer Settings <span class="icon">⏱️</span></h2>
+                <div class="settings-grid">
+                    <label>Time Management Technique:</label>
+                    <select id="timer-technique-settings" class="glowing-input">
+                        <option value="classic">Classic Pomodoro (25m work / 5m break)</option>
+                        <option value="eisenhower">Eisenhower Pomodoro (50m/10m)</option>
+                        <option value="5217">52/17 Rule (52m/17m)</option>
+                        <option value="90min">90-Minute Cycle (90m/20m)</option>
+                        <option value="timebox">Timeboxing (60m/15m)</option>
+                        <option value="3hour">3-Hour Block (180m/30m)</option>
+                    </select>
+                    <label>Focus Time (minutes):</label>
+                    <input type="number" id="focus-time" class="glowing-input" value="25">
+                    <label>Break Length (minutes):</label>
+                    <input type="number" id="break-time" class="glowing-input" value="5">
+                    <label>Target Sessions:</label>
+                    <input type="number" id="target-sessions" class="glowing-input" value="4">
+                    <p>Sessions Completed: <span id="sessions-completed">2/4</span></p>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 50%;"></div>
+                    </div>
                 </div>
             </section>
             <section class="card" id="stats">
                 <h2>Grind Analytics</h2>
                 <div class="stats-grid">
-                    <div class="chart-card">
-                        <canvas id="session-chart"></canvas>
-                        <p class="chart-label">Total Sessions</p>
-                    </div>
-                    <div class="chart-card">
-                        <canvas id="time-chart"></canvas>
-                        <p class="chart-label">Time Distribution</p>
-                    </div>
-                    <div class="chart-card">
-                        <canvas id="streak-chart"></canvas>
-                        <p class="chart-label">Streak Trends</p>
-                    </div>
+                    <canvas id="session-chart"></canvas>
+                    <canvas id="time-chart"></canvas>
+                    <canvas id="streak-chart"></canvas>
                     <p id="grind-score">Grind Score: 0%</p>
                 </div>
             </section>
         </main>
+        <div class="bottom-left-audio">
+            <span class="audio-icon">🔊</span>
+        </div>
     </div>
     <script src="script.js"></script>
 </body>
